@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task List</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        input {
+            padding: 10px;
+            width: 70%;
+        }
+
+        button {
+            padding: 10px 15px;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Task List</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input
+            type="text"
+            name="title"
+            placeholder="Enter a task"
+        >
+
+        <button type="submit">
+            Add Task
+        </button>
+    </form>
+
+    <hr>
+
+    <h2>Tasks</h2>
+
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task.title }}
+            </li>
+        {% empty %}
+            <li>No tasks added yet.</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
